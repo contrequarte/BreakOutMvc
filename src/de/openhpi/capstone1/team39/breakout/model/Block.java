@@ -4,7 +4,7 @@ import java.awt.Color;
 
 public class Block extends AbstractGameComponent {
 	
-	public Block(int x, int y, int size, Color color)	{
-		super(x, y, size, size, color, true, GameComponentType.BLOCK);
+	public Block(int x, int y, int width, int height, Color color)	{
+		super(x, y, width, width, color, true, GameComponentType.BLOCK);
 	}
 }
