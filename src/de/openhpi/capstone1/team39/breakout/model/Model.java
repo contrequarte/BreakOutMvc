@@ -15,6 +15,8 @@ public class Model {
 	public Model()
 	{
 		components = new ArrayList<AbstractGameComponent>();
+		
+		LoadModelData();
 	}
 	
     private void LoadModelData()
@@ -51,6 +53,26 @@ public class Model {
     				
     		components.add(new Block(blockX, blockY, blockWidth , blockHeight, Color.RED));
     	}
-
     }
+	public void updateTimerMove(Object o)
+	{
+		
+	}
+	
+	public void updateUserMove(Object o)
+	{
+		
+	}
+	
+	//Providing data to be consumed by the view to paint the game
+	public List<RenderData> getRenderData()
+	{
+		List<RenderData> resultList = new ArrayList<RenderData>();
+		for(AbstractGameComponent agc : components)
+		{
+			resultList.add(agc.getRepaintData());
+		}
+
+		return resultList;
+	}
 }

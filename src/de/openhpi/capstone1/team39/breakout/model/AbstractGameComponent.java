@@ -2,7 +2,6 @@ package de.openhpi.capstone1.team39.breakout.model;
 
 
 import java.awt.Color;
-import java.awt.Rectangle;
 
 public abstract class AbstractGameComponent {
 	int xPos;
@@ -25,9 +24,8 @@ public abstract class AbstractGameComponent {
         componentType = compType;
 	}
 	
-	public Rectangle getRectangel()
+	public RenderData getRepaintData()
 	{
-		return new Rectangle(xPos, yPos, width, height);
+		return new RenderData(xPos, yPos, width, height, objectColor, componentType);
 	}
-	
 }
