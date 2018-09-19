@@ -13,7 +13,7 @@ public abstract class AbstractGameComponent {
 	boolean isVisible;
 	GameComponentType componentType;
 	
-	public AbstractGameComponent(int x, int y, int objectWidth, int objectHeight
+	protected AbstractGameComponent(int x, int y, int objectWidth, int objectHeight
 			                      , Color color, boolean visible, GameComponentType compType )
 	{
 		xPos = x;
