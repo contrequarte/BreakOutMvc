@@ -8,14 +8,15 @@ public class Model {
 	
 	protected List<AbstractGameComponent> components;
 	
-	public static final  int fieldWidth = 1200;
-	public static final  int fieldHeight = 800;
+	private int fieldWidth;
+	private int fieldHeight;
 	public static final int wallStrength = 20;
 	
-	public Model()
+	public Model(int widthOfField, int heightOfField)
 	{
 		components = new ArrayList<AbstractGameComponent>();
-		
+		fieldWidth = widthOfField;
+		fieldHeight = heightOfField;
 		LoadModelData();
 	}
 	
@@ -75,4 +76,14 @@ public class Model {
 
 		return resultList;
 	}
+	
+	public int getFieldWidth()
+	{
+		return fieldWidth;
+	}
+	
+	public int getFieldHeight()
+	{
+		return fieldHeight;
+	}	
 }

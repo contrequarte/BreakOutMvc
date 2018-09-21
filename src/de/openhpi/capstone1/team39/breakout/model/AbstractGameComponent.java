@@ -2,6 +2,7 @@ package de.openhpi.capstone1.team39.breakout.model;
 
 
 import java.awt.Color;
+import java.util.UUID;
 
 public abstract class AbstractGameComponent {
 	int xPos;
@@ -11,6 +12,7 @@ public abstract class AbstractGameComponent {
 	Color objectColor;
 	boolean isVisible;
 	GameComponentType componentType;
+	String identifier;
 	
 	protected AbstractGameComponent(int x, int y, int objectWidth, int objectHeight
 			                      , Color color, boolean visible, GameComponentType compType )
@@ -22,6 +24,8 @@ public abstract class AbstractGameComponent {
         objectColor = color;
         isVisible = visible;
         componentType = compType;
+        identifier = UUID.randomUUID().toString();
+        
 	}
 	
 	public RenderData getRepaintData()
