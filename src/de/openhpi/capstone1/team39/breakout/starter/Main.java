@@ -1,5 +1,6 @@
 package de.openhpi.capstone1.team39.breakout.starter;
 
+import java.util.Scanner;
 import java.util.UUID;
 
 import de.openhpi.capstone1.team39.breakout.model.Model;
@@ -14,6 +15,18 @@ public class Main {
 		
 		View view = new View(model);
 		
-		view.UpdateScreen();
+		view.updateScreen();
+		enterSomeThingToProceed();
+		model.updateTimerMove(new Object());
+        view.updateScreen();
+		
+	}
+	private static void enterSomeThingToProceed() {
+		System.out.println("Enter someting finished by pressing return key!");
+		Scanner sc = new Scanner(System.in);
+		String a = sc.next();
+		//	System.out.println(a);
+
+		sc.close();
 	}
 }

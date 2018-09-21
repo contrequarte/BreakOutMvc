@@ -57,7 +57,7 @@ public class Model {
     }
 	public void updateTimerMove(Object o)
 	{
-		
+    	components.add(new Ball(50,50,50,Color.GREEN));
 	}
 	
 	public void updateUserMove(Object o)
