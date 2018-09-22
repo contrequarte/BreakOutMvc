@@ -12,5 +12,11 @@ public class Ball extends AbstractGameComponent implements IMoveable {
 		//do whatever a move needs 
 		
 	}
+
+	@Override
+	public void moveNewXY(int newX, int newY) {
+		// TODO Auto-generated method stub
+		
+	}
 		
 }

@@ -4,17 +4,19 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Model {
+public class Model implements IModelMouseMoveObservable {
 	
 	protected List<AbstractGameComponent> components;
 	
 	private int fieldWidth;
 	private int fieldHeight;
 	public static final int wallStrength = 20;
+	private List<IModelMouseMoveObserver> modelMousMoveObservers;
 	
 	public Model(int widthOfField, int heightOfField)
 	{
 		components = new ArrayList<AbstractGameComponent>();
+		modelMousMoveObservers = new ArrayList<IModelMouseMoveObserver>();
 		fieldWidth = widthOfField;
 		fieldHeight = heightOfField;
 		LoadModelData();
@@ -41,10 +43,18 @@ public class Model {
     	components.add(new Ball(wallStrength + (int)(remainingFieldWith-ballSize)/2
     			               , wallStrength + (int)(remainingFieldHeight-ballSize)/2
     			               , ballSize, Color.BLUE));
-
+    	
+    	//add the paddle
+    	int paddleWidth = 80;
+    	int paddleHeight = 10;
+    	components.add(new Paddle(wallStrength + (int)(remainingFieldWith-paddleWidth)/2
+	               , (int)(fieldHeight - wallStrength)
+	               , paddleWidth, paddleHeight, Color.MAGENTA
+	               , wallStrength, fieldWidth-wallStrength));
+    	
     	// add five blocks    	
     	int blockSpace = (int)remainingFieldWith / 5;
-    	int blockWidth = 80;
+    	int blockWidth = 160;
     	int blockHeight = 35;
     	int blockOffset = (int)(blockSpace - blockWidth)/2;
     	int blockY = wallStrength + (int)(fieldHeight - wallStrength) / 3;
@@ -60,7 +70,7 @@ public class Model {
     	components.add(new Ball(50,50,50,Color.GREEN));
 	}
 	
-	public void updateUserMove(Object o)
+	public void updateUserMouseMove(int mouseX, int mouseY)
 	{
 		
 	}
@@ -85,5 +95,26 @@ public class Model {
 	public int getFieldHeight()
 	{
 		return fieldHeight;
+	}
+
+	@Override
+	public void addMouseObserver(IModelMouseMoveObserver modelMouseMoveObserver) {
+		if (!modelMousMoveObservers.contains(modelMouseMoveObserver))
+			modelMousMoveObservers.add(modelMouseMoveObserver);
+	}
+
+	
+	@Override
+	public void removeMouseObserver(IModelMouseMoveObserver modelMouseMoveObserver) {
+		if (modelMousMoveObservers.contains(modelMouseMoveObserver))
+			modelMousMoveObservers.remove(modelMouseMoveObserver);
+		
+	}
+
+	@Override
+	public void notifyAllModelMouseMoveObservers(int newXPos, int newYPos) {
+		
+		modelMousMoveObservers.forEach(mmmo->mmmo.newMouseMoveDetected(newXPos, newYPos));
+		
 	}	
 }
